@@ -34,6 +34,7 @@ namespace S57Lib.Object.Feature
         public RUIN RUIN { get; set; }
         public FOID FOID { get; set; }
         public FFPC FFPC { get; set; }
+        public FSPC FSPC { get; set; }
 
         public List<ATTF> ATTFS = new List<ATTF>();
         public List<NATF> NATFS = new List<NATF>();

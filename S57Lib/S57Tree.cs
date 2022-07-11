@@ -66,6 +66,10 @@ namespace S57Lib
                                     FFPT FFPT = new FFPT(field.Value);
                                     frids[^1].FFPTS.Add(FFPT);
                                     break;
+                                case "FSPC":
+                                    FSPC FSPC = new FSPC(field.Value);
+                                    frids[^1].FSPC = FSPC;
+                                    break;
                             }
                         }
                     }
