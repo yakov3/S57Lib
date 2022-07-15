@@ -23,30 +23,29 @@ namespace S57Lib.Object
     }
     public class DSID
     {
-        public DSID(Byte[] arr) 
+        public DSID(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            RCNM = ArrayReader.ReadB11(i);           
-            RCID = ArrayReader.ReadB14(i);
-            EXPP = (EXPP)ArrayReader.ReadB11(i);
-            INTU = ArrayReader.ReadB11(i);
+            RCNM = (RCNM)ArrayReader.ReadByte(i);           
+            RCID = ArrayReader.ReadUInt(i);
+            EXPP = (EXPP)ArrayReader.ReadByte(i);
+            INTU = ArrayReader.ReadByte(i);
             DSNM = ArrayReader.ReadString(i); 
             EDTN = ArrayReader.ReadString(i); 
             UPDN = ArrayReader.ReadString(i);
             UADT = ArrayReader.ReadDate(i);
             ISDT = ArrayReader.ReadDate(i);
             STED = ArrayReader.ReadReal(i);   
-            PRSP = (PRSP)ArrayReader.ReadB11(i);
+            PRSP = (PRSP)ArrayReader.ReadByte(i);
             PSDN = ArrayReader.ReadString(i);
             PRED = ArrayReader.ReadString(i);
-            PROF = (PROF)ArrayReader.ReadB11(i);
-            AGEN = ArrayReader.ReadB12(i);
+            PROF = (PROF)ArrayReader.ReadByte(i);
+            AGEN = ArrayReader.ReadUShort(i);
             COMT = ArrayReader.ReadString(i);
         }
-        public uint RCNM { get; set; }
+        public RCNM RCNM { get; set; }
         public uint RCID { get; set; }
         public EXPP EXPP { get; set; }
-        public uint INTU { get; set; }
+        public byte INTU { get; set; }
         public string DSNM { get; set; }
         public string EDTN { get; set; }
         public string UPDN { get; set; }
@@ -57,7 +56,7 @@ namespace S57Lib.Object
         public string PSDN { get; set; }
         public string PRED { get; set; }
         public PROF PROF { get; set; }
-        public uint AGEN { get; set; }
+        public ushort AGEN { get; set; }
         public string COMT { get; set; }
     }
 }

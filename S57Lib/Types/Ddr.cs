@@ -12,6 +12,9 @@ namespace S57Lib.Types
         public DdrLeader DdrLeader = new DdrLeader();
         protected override Leader.Leader Leader => DdrLeader;
         public List<Field.Descriptive.DdrDescriptive> Descriptives => descriptives;
+        protected override uint AALL => 1;
+        protected override uint NALL => 1;
+
         private List<Field.Descriptive.DdrDescriptive> descriptives = new List<Field.Descriptive.DdrDescriptive>();
         private ControlField controlField = new ControlField(4);
     }

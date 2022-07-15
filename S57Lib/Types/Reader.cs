@@ -7,6 +7,8 @@ namespace S57Lib.Types
 {
     public class Reader
     {
+        public static uint AALL;
+        public static uint NALL;
         public static int ReadInt(BinaryReader binaryReader, int size)
         {
             char[] arr = binaryReader.ReadChars(size);
@@ -61,7 +63,15 @@ namespace S57Lib.Types
             {
                 return null;
             }
-            else return array;
+            else return array; 
+        }
+        public static byte[] ReadByteArrL2(BinaryReader binaryReader, int length) 
+        {
+            byte[] array = binaryReader.ReadBytes(length - 2);
+            byte b0 = binaryReader.ReadByte();
+            byte b1 = binaryReader.ReadByte();
+            if (b0 == 0x1E && b1 == 0x00) return array;
+            else return null;
         }
     }
 }

@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace S57Lib.Object.Feature
+namespace S57Lib.Object.Spatial
 {
-    public class NATF
+    public class ATTV
     {
-        public NATF(IEnumerator i)
+        public ATTV(IEnumerator i) 
         {
             ATTL = ArrayReader.ReadUShort(i);
-            ATVL = ArrayReader.ReadString(i);
+            ATVL = ArrayReader.ReadString(i);    
         }
         public ushort ATTL { get; set; }
         public string ATVL { get; set; }

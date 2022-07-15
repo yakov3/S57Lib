@@ -7,16 +7,15 @@ namespace S57Lib.Object.Feature
 {
     public class FOID
     {
-        public FOID(byte[] arr) 
+        public FOID(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            AGEN = ArrayReader.ReadB12(i);
-            FIDN = ArrayReader.ReadB14(i);
-            FIDS = ArrayReader.ReadB12(i);
+            AGEN = ArrayReader.ReadUShort(i);
+            FIDN = ArrayReader.ReadUInt(i);
+            FIDS = ArrayReader.ReadUShort(i);
         }
 
-        public uint AGEN { get; set; }
+        public ushort AGEN { get; set; }
         public uint FIDN { get; set; }
-        public uint FIDS { get; set; }
+        public ushort FIDS { get; set; }
     }
 }

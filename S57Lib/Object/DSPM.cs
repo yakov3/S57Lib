@@ -13,32 +13,33 @@ namespace S57Lib.Object
     }
     public class DSPM
     {
-        public DSPM(Byte[] arr)
+        public DSPM(IEnumerator i)
         {
-            IEnumerator i = arr.GetEnumerator();
-            RCNM = ArrayReader.ReadB11(i);
-            RCID = ArrayReader.ReadB14(i);
-            HDAT = ArrayReader.ReadB11(i);
-            VDAT = ArrayReader.ReadB11(i);
-            SDAT = ArrayReader.ReadB11(i);
-            CSCL = ArrayReader.ReadB14(i);
-            DUNI = ArrayReader.ReadB11(i);
-            HUNI = ArrayReader.ReadB11(i);
-            PUNI = ArrayReader.ReadB11(i);
-            COUN = (COUN)ArrayReader.ReadB11(i);
-            COMF = ArrayReader.ReadB14(i);
-            SOMF = ArrayReader.ReadB14(i);
+            RCNM = (RCNM)ArrayReader.ReadByte(i);
+            RCID = ArrayReader.ReadUInt(i);
+            HDAT = ArrayReader.ReadByte(i);
+            VDAT = ArrayReader.ReadByte(i);
+            SDAT = ArrayReader.ReadByte(i);
+            CSCL = ArrayReader.ReadUInt(i);
+            DUNI = ArrayReader.ReadByte(i);
+            HUNI = ArrayReader.ReadByte(i);
+            PUNI = ArrayReader.ReadByte(i);
+            COUN = (COUN)ArrayReader.ReadByte(i);
+            COMF = ArrayReader.ReadUInt(i);
+            ArrayReader.COMF = COMF;
+            SOMF = ArrayReader.ReadUInt(i);
+            ArrayReader.SOMF = SOMF;
             COMT = ArrayReader.ReadString(i);
         }
-        public uint RCNM { get; set; }
+        public RCNM RCNM { get; set; }
         public uint RCID { get; set; }
-        public uint HDAT { get; set; }
-        public uint VDAT { get; set; }
-        public uint SDAT { get; set; }
+        public byte HDAT { get; set; }
+        public byte VDAT { get; set; }
+        public byte SDAT { get; set; }
         public uint CSCL { get; set; }
-        public uint DUNI { get; set; }
-        public uint HUNI { get; set; }
-        public uint PUNI { get; set; }
+        public byte DUNI { get; set; }
+        public byte HUNI { get; set; }
+        public byte PUNI { get; set; }
         public COUN COUN { get; set; }
         public uint COMF { get; set; }
         public uint SOMF { get; set; }

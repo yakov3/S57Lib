@@ -7,35 +7,25 @@ namespace S57Lib.Object
 {
     public class ArrayReader
     {
-        public static uint ReadB11(IEnumerator enumerator) 
+        public static uint COMF;
+        public static uint SOMF;
+        public static byte ReadByte(IEnumerator enumerator) 
         {
-            byte[] arr = new byte[4];
-
             enumerator.MoveNext();
-            arr[0] = (byte)enumerator.Current;
-            
-            for(int i = 1; i < 4; i++) 
-            {
-                arr[i] = 0x00;
-            }
-            return BitConverter.ToUInt32(arr);
+            return (byte)enumerator.Current;
         }
-        public static uint ReadB12(IEnumerator enumerator) 
+        public static ushort ReadUShort(IEnumerator enumerator) 
         {
-            byte[] arr = new byte[4];
+            byte[] arr = new byte[2];
             
             enumerator.MoveNext();
             arr[0] = (byte)enumerator.Current;
             enumerator.MoveNext();
             arr[1] = (byte)enumerator.Current;
             
-            for (int i = 2; i < 4; i++)
-            {
-                arr[i] = 0x00;
-            }
-            return BitConverter.ToUInt32(arr);
+            return BitConverter.ToUInt16(arr);
         }
-        public static uint ReadB14(IEnumerator enumerator)
+        public static uint ReadUInt(IEnumerator enumerator)
         {
             byte[] arr = new byte[4];
             for (int i = 0; i < 4; i++) 
@@ -57,6 +47,22 @@ namespace S57Lib.Object
                 str += c;
             }
             return str;
+        }
+        public static ushort[] ReadStringL2(IEnumerator enumerator) 
+        {
+            List<ushort> list = new List<ushort>();
+            while (true) 
+            {
+                byte[] arr = new byte[2];
+                enumerator.MoveNext();
+                arr[0] = (byte)enumerator.Current;
+                enumerator.MoveNext();
+                arr[1] = (byte)enumerator.Current;
+                ushort i = Convert.ToUInt16(arr);
+                if (i == 0x1F) break;
+                list.Add(i);
+            }
+            return list.ToArray();
         }
         public static DateTime ReadDate(IEnumerator enumerator) 
         {
@@ -88,6 +94,26 @@ namespace S57Lib.Object
                 enumerator.MoveNext();
                 Console.WriteLine(enumerator.Current);
             }
+        }
+        public static int ReadInt(IEnumerator enumerator) 
+        {
+            byte[] arr = new byte[4];
+            for (int i = 0; i < 4; i++)
+            {
+                enumerator.MoveNext();
+                arr[i] = (byte)enumerator.Current;
+            }
+            return BitConverter.ToInt32(arr);
+        }
+        public static double ReadLL(IEnumerator enumerator) 
+        {
+            int i = ReadInt(enumerator);
+            return (double)i/COMF;
+        }
+        public static double ReadH(IEnumerator enumerator) 
+        {
+            int i = ReadInt(enumerator);
+            return (double)i/SOMF;
         }
     }
 }

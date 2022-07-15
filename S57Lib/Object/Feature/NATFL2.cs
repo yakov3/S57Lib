@@ -5,14 +5,14 @@ using System.Text;
 
 namespace S57Lib.Object.Feature
 {
-    public class NATF
+    public class NATFL2
     {
-        public NATF(IEnumerator i)
+        public NATFL2(IEnumerator i) 
         {
             ATTL = ArrayReader.ReadUShort(i);
-            ATVL = ArrayReader.ReadString(i);
+            ATVL = ArrayReader.ReadStringL2(i);
         }
         public ushort ATTL { get; set; }
-        public string ATVL { get; set; }
+        public ushort[] ATVL { get; set; }
     }
 }

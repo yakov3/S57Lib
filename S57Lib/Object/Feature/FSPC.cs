@@ -13,12 +13,11 @@ namespace S57Lib.Object.Feature
     }
     public class FSPC
     {
-        public FSPC(byte[] arr) 
+        public FSPC(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            FSUI = (FSUI)ArrayReader.ReadB11(i);
-            FSIX = ArrayReader.ReadB12(i);
-            NSPT = ArrayReader.ReadB12(i);
+            FSUI = (FSUI)ArrayReader.ReadByte(i);
+            FSIX = ArrayReader.ReadUShort(i);
+            NSPT = ArrayReader.ReadUShort(i);
         }
         public FSUI FSUI { get; set; }
         public uint FSIX { get; set; }

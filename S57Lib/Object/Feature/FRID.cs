@@ -14,30 +14,30 @@ namespace S57Lib.Object.Feature
     }
     public class FRID
     {
-        public FRID(byte[] arr)
+        public FRID(IEnumerator i)
         {
-            IEnumerator i = arr.GetEnumerator();
-            RCNM = ArrayReader.ReadB11(i);
-            RCID = ArrayReader.ReadB14(i);
-            PRIM = ArrayReader.ReadB11(i);
-            GRUP = ArrayReader.ReadB11(i);
-            OBJL = ArrayReader.ReadB12(i);
-            RVER = ArrayReader.ReadB12(i);
-            RUIN = (RUIN)ArrayReader.ReadB11(i);
+            RCNM = (RCNM)ArrayReader.ReadByte(i);
+            RCID = ArrayReader.ReadUInt(i);
+            PRIM = ArrayReader.ReadByte(i);
+            GRUP = ArrayReader.ReadByte(i);
+            OBJL = ArrayReader.ReadUShort(i);
+            RVER = ArrayReader.ReadUShort(i);
+            RUIN = (RUIN)ArrayReader.ReadByte(i);
         }
-        public uint RCNM { get; set; }
+        public RCNM RCNM { get; set; }
         public uint RCID { get; set; }
-        public uint PRIM { get; set; }
-        public uint GRUP { get; set; }
-        public uint OBJL { get; set; }
-        public uint RVER { get; set; }
+        public byte PRIM { get; set; }
+        public byte GRUP { get; set; }
+        public ushort OBJL { get; set; }
+        public ushort RVER { get; set; }
         public RUIN RUIN { get; set; }
-        public FOID FOID { get; set; }
-        public FFPC FFPC { get; set; }
-        public FSPC FSPC { get; set; }
 
-        public List<ATTF> ATTFS = new List<ATTF>();
-        public List<NATF> NATFS = new List<NATF>();
-        public List<FFPT> FFPTS = new List<FFPT>();
+        public FOID FOID { get; set; }
+        public List<ATTF> ATTFS { get; set; }
+        public List<NATF> NATFS { get; set; }
+        public FFPC FFPC { get; set; }
+        public List<FFPT> FFPTS { get; set; }
+        public FSPC FSPC { get; set; }
+        public List<FSPT> FSPTS { get; set; }
     }
 }

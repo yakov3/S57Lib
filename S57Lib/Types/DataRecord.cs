@@ -10,6 +10,8 @@ namespace S57Lib.Types
         protected abstract Leader.Leader Leader { get; }
         public Dir Dir = null;
         public Dictionary<string, byte[]> fields = new Dictionary<string, byte[]>();
+        protected abstract uint AALL { get; }
+        protected abstract uint NALL { get; }
         public bool Read(BinaryReader binaryReader)
         {
             if (!Leader.Read(binaryReader)) return false;
@@ -20,8 +22,49 @@ namespace S57Lib.Types
             
             for (int i = 0; i < Dir.Entries.Count; i++)
             {
-                byte[] arr = Reader.ReadByteArr(binaryReader, Dir.Entries[i].length);
-                if (arr == null) return false;
+                byte[] arr = null;
+                if (Dir.Entries[i].tag == "ATTF") 
+                {
+                    if (AALL == 2)
+                    {
+                        arr = Reader.ReadByteArrL2(binaryReader, Dir.Entries[i].length);
+                        if (arr == null)
+                        {
+                            return false;
+                        }                    }
+                    else 
+                    {
+                        arr = Reader.ReadByteArr(binaryReader, Dir.Entries[i].length);
+                        if (arr == null)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else if (Dir.Entries[i].tag == "NATF")
+                {
+                    if (NALL == 2)
+                    {
+                        arr = Reader.ReadByteArrL2(binaryReader, Dir.Entries[i].length);
+                        if (arr == null)
+                        {
+                            return false;
+                        }
+                    }
+                    else 
+                    {
+                        arr = Reader.ReadByteArr(binaryReader, Dir.Entries[i].length);
+                        if (arr == null)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                else
+                {
+                    arr = Reader.ReadByteArr(binaryReader, Dir.Entries[i].length);
+                    if (arr == null) return false;
+                }
                 fields.Add(Dir.Entries[i].tag, arr);
             }
             return true;

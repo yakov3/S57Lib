@@ -1,7 +1,9 @@
 ﻿using S57Lib.Object;
 using S57Lib.Object.Feature;
+using S57Lib.Object.Spatial;
 using S57Lib.Types;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -20,7 +22,7 @@ namespace S57Lib
                     Ddr ddr = new Ddr();
                     if (!ddr.Read(binaryReader)) return false;
 
-                    for (int i = 0; ; i++)
+                    for (int x = 0; ; x++)
                     {
                         if (fileStream.Position == fileStream.Length) break;
 
@@ -28,48 +30,148 @@ namespace S57Lib
                         if (!dr.Read(binaryReader)) return false;
                         foreach (KeyValuePair<string, byte[]> field in dr.fields)
                         {
+                            ArrayIEnumerator i = new ArrayIEnumerator(field.Value);
                             switch (field.Key)
                             {
                                 case "DSID":
-                                    DSID = new DSID(field.Value);
+                                    DSID = new DSID(i);
                                     break;
                                 case "DSSI":
-                                    DSSI = new DSSI(field.Value);
+                                    DSSI = new DSSI(i);
                                     break;
                                 case "DSPM":
-                                    DSPM = new DSPM(field.Value);
+                                    DSPM = new DSPM(i);
                                     break;
                                 case "DSRS":
-                                    DSRC = new DSRC(field.Value);
+                                    DSRC = new DSRC(i);
                                     break;
+
+                                #region FRID
+
                                 case "FRID":
-                                    FRID FRID = new FRID(field.Value);
+                                    FRID FRID = new FRID(i);
                                     frids.Add(FRID);
                                     break;
                                 case "FOID":
-                                    FOID FOID = new FOID(field.Value);
+                                    FOID FOID = new FOID(i);
                                     frids[^1].FOID = FOID;
                                     break;
                                 case "ATTF":
-                                    ATTF ATTF = new ATTF(field.Value);
-                                    frids[^1].ATTFS.Add(ATTF);
+                                    do
+                                    {
+                                        ATTF ATTF = new ATTF(i);
+                                        if (frids[^1].ATTFS == null) frids[^1].ATTFS = new List<ATTF>();
+                                        frids[^1].ATTFS.Add(ATTF);
+                                    }
+                                    while (!i.IsEnd);
                                     break;
                                 case "NATF":
-                                    NATF NAFT = new NATF(field.Value);
-                                    frids[^1].NATFS.Add(NAFT);
+                                    //do
+                                    //{
+                                    //    NATF NAFT = new NATF(i);
+                                    //    if (frids[^1].NATFS == null) frids[^1].NATFS = new List<NATF>();
+                                    //    frids[^1].NATFS.Add(NAFT);
+                                    //}
+                                    //while (!i.IsEnd);
                                     break;
                                 case "FFPC":
-                                    FFPC FFPC = new FFPC(field.Value);
+                                    FFPC FFPC = new FFPC(i);
                                     frids[^1].FFPC = FFPC;
                                     break;
                                 case "FFPT":
-                                    FFPT FFPT = new FFPT(field.Value);
-                                    frids[^1].FFPTS.Add(FFPT);
+                                    do
+                                    {
+                                        FFPT FFPT = new FFPT(i);
+                                        if (frids[^1].FFPTS == null) frids[^1].FFPTS = new List<FFPT>();
+                                        frids[^1].FFPTS.Add(FFPT);
+                                    }
+                                    while (!i.IsEnd);
                                     break;
                                 case "FSPC":
-                                    FSPC FSPC = new FSPC(field.Value);
+                                    FSPC FSPC = new FSPC(i);
                                     frids[^1].FSPC = FSPC;
                                     break;
+                                case "FSPT":
+                                    do
+                                    {
+                                        FSPT FSPT = new FSPT(i);
+                                        if (frids[^1].FSPTS == null) frids[^1].FSPTS = new List<FSPT>();
+                                        frids[^1].FSPTS.Add(FSPT);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                #endregion
+
+                                #region VRID
+
+                                case "VRID":
+                                    vrids.Add(new VRID(i));
+                                    break;
+
+                                case "ATTV":
+                                    do
+                                    {
+                                        ATTV ATTV = new ATTV(i);
+                                        if (vrids[^1].ATTVS == null) vrids[^1].ATTVS = new List<ATTV>();
+                                        vrids[^1].ATTVS.Add(ATTV);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "VRPC":
+                                    vrids[^1].VRPC = new VRPC(i);
+                                    break;
+
+                                case "VRPT":
+                                    do
+                                    {
+                                        VRPT VRPT = new VRPT(i);
+
+                                        if (vrids[^1].VRPTS == null) vrids[^1].VRPTS = new List<VRPT>();
+                                        vrids[^1].VRPTS.Add(VRPT);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "SGCC":
+                                    vrids[^1].SGCC = new SGCC(i);
+                                    break;
+
+                                case "SG2D":
+                                    do
+                                    {
+                                        SG2D SG2D = new SG2D(i);
+
+                                        if (vrids[^1].SG2DS == null) vrids[^1].SG2DS = new List<SG2D>();
+                                        vrids[^1].SG2DS.Add(SG2D);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "SG3D":
+                                    do
+                                    {
+                                        SG3D SG3D = new SG3D(i);
+
+                                        if (vrids[^1].SG3DS == null) vrids[^1].SG3DS = new List<SG3D>();
+                                        vrids[^1].SG3DS.Add(SG3D);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "ARCC":
+                                    do
+                                    {
+                                        ARCC ARCC = new ARCC(i);
+                                        if (vrids[^1].ARCCS == null) vrids[^1].ARCCS = new List<ARCC>();
+                                        vrids[^1].ARCCS.Add(ARCC);
+                                        break;
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                #endregion
                             }
                         }
                     }
@@ -81,8 +183,10 @@ namespace S57Lib
         public DSSI DSSI { get; private set; }
         public DSPM DSPM { get; private set; }
         public DSRC DSRC { get; private set; }
-
-        private List<FRID> frids = new List<FRID>();
         public List<FRID> FRIDS => frids;
+        public List<VRID> VRIDS => vrids;
+        
+        private List<FRID> frids = new List<FRID>();
+        private List<VRID> vrids = new List<VRID>();
     }
 }

@@ -7,15 +7,14 @@ namespace S57Lib.Object.Feature
 {   
     public class FFPC
     {
-        public FFPC(byte[] arr)
+        public FFPC(IEnumerator i)
         {
-            IEnumerator i = arr.GetEnumerator();
-            FFUI = (FFUI)ArrayReader.ReadB11(i);
-            FFIX = ArrayReader.ReadB12(i);
-            NFPT = ArrayReader.ReadB12(i);
+            FFUI = (FFUI)ArrayReader.ReadByte(i);
+            FFIX = ArrayReader.ReadUShort(i);
+            NFPT = ArrayReader.ReadUShort(i);
         }
         public FFUI FFUI { get; set; }
-        public uint FFIX { get; set; }
-        public uint NFPT { get; set; }
+        public ushort FFIX { get; set; }
+        public ushort NFPT { get; set; }
     }
 }

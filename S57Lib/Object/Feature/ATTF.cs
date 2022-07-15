@@ -7,13 +7,12 @@ namespace S57Lib.Object.Feature
 {
     public class ATTF
     {
-        public ATTF(byte[] arr) 
+        public ATTF(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            ATTL = ArrayReader.ReadB12(i);
+            ATTL = ArrayReader.ReadUShort(i);
             ATVL = ArrayReader.ReadString(i);
         }
-        public uint ATTL { get; set; }
+        public ushort ATTL { get; set; }
         public string ATVL { get; set; }
     }
 }

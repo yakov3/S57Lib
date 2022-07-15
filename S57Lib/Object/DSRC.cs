@@ -12,10 +12,9 @@ namespace S57Lib.Object
     }
     public class DSRC
     {   
-        public DSRC(byte[] arr) 
+        public DSRC(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            RPID = ArrayReader.ReadB11(i);
+            RPID = ArrayReader.ReadByte(i);
             ArrayReader.PrintArr(i,8);
             //RYCO = ArrayReader.ReadB11(i);
             //RXCO = ArrayReader.ReadB11(i);
@@ -25,7 +24,7 @@ namespace S57Lib.Object
             //RYVL = ArrayReader.ReadB11(i);
             //COMT = ArrayReader.ReadString(i);
         }
-        public uint RPID { get; set; }
+        public byte RPID { get; set; }
         public uint RYCO { get; set; }
         public uint RXCO { get; set; }
         public CURP CURP { get; set; }

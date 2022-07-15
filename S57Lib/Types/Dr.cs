@@ -11,6 +11,9 @@ namespace S57Lib.Types
         public DrLeader DrLeader = new DrLeader();
         protected override Leader.Leader Leader => DrLeader;
         public List<DrDescriptive> Descriptives => descriptives;
+        protected override uint AALL => Reader.AALL;
+        protected override uint NALL => Reader.NALL;
+
         private List<DrDescriptive> descriptives = new List<DrDescriptive>();
     }
 }

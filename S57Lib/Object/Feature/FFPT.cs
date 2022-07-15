@@ -13,11 +13,10 @@ namespace S57Lib.Object.Feature
     }
     public class FFPT
     {
-        public FFPT(byte[] arr) 
+        public FFPT(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
             LNAM = new LNAM(i);
-            RIND = (RIND)ArrayReader.ReadB11(i);
+            RIND = (RIND)ArrayReader.ReadByte(i);
             COMT = ArrayReader.ReadString(i);
         }
         public LNAM LNAM { get; set; }

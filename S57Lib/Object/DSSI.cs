@@ -1,4 +1,5 @@
-﻿using System;
+﻿using S57Lib.Types;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -15,24 +16,25 @@ namespace S57Lib.Object
     }
     public class DSSI
     {
-        public DSSI(Byte[] arr) 
+        public DSSI(IEnumerator i) 
         {
-            IEnumerator i = arr.GetEnumerator();
-            DSTR = (DSTR)ArrayReader.ReadB11(i);
-            AALL = ArrayReader.ReadB11(i);
-            NALL = ArrayReader.ReadB11(i);
-            NOMR = ArrayReader.ReadB14(i);
-            NOCR = ArrayReader.ReadB14(i);
-            NOGR = ArrayReader.ReadB14(i);
-            NOLR = ArrayReader.ReadB14(i);
-            NOIN = ArrayReader.ReadB14(i);
-            NOCN = ArrayReader.ReadB14(i);
-            NOED = ArrayReader.ReadB14(i);
-            NOFA = ArrayReader.ReadB14(i);
+            DSTR = (DSTR)ArrayReader.ReadByte(i);
+            AALL = ArrayReader.ReadByte(i);
+            Reader.AALL = AALL;
+            NALL = ArrayReader.ReadByte(i);
+            Reader.NALL = NALL;
+            NOMR = ArrayReader.ReadUInt(i);
+            NOCR = ArrayReader.ReadUInt(i);
+            NOGR = ArrayReader.ReadUInt(i);
+            NOLR = ArrayReader.ReadUInt(i);
+            NOIN = ArrayReader.ReadUInt(i);
+            NOCN = ArrayReader.ReadUInt(i);
+            NOED = ArrayReader.ReadUInt(i);
+            NOFA = ArrayReader.ReadUInt(i);
         }
         public DSTR DSTR { get; set; }
-        public uint AALL { get; set; }
-        public uint NALL { get; set; }
+        public byte AALL { get; set; }
+        public byte NALL { get; set; }
         public uint NOMR { get; set; }
         public uint NOCR { get; set; }
         public uint NOGR { get; set; }
