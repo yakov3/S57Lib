@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace S57Lib.Object.Spatial
 {
@@ -30,8 +31,8 @@ namespace S57Lib.Object.Spatial
         public byte ORDR { get; set; }
         public uint RESO { get; set; }
         public uint FPMF { get; set; }
-        public AR2D AR2D { get; set; }
-        public EL2D EL2D { get; set; }
-        public CT2D CT2D { get; set; }
+        public List<AR2D> AR2DS { get; set; }
+        public List<EL2D> EL2DS { get; set; }
+        public List<CT2D> CT2DS { get; set; }
     }
 }

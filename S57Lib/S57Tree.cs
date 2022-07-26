@@ -171,7 +171,37 @@ namespace S57Lib
                                     while (!i.IsEnd);
                                     break;
 
-                                #endregion
+                                case "AR2D":
+                                    do
+                                    {
+                                        AR2D AR2D = new AR2D(i);
+                                        if (vrids[^1].ARCCS[^1].AR2DS == null) vrids[^1].ARCCS[^1].AR2DS = new List<AR2D>();
+                                        vrids[^1].ARCCS[^1].AR2DS.Add(AR2D);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "EL2D":
+                                    do
+                                    {
+                                        EL2D EL2D = new EL2D(i);
+                                        if (vrids[^1].ARCCS[^1].EL2DS == null) vrids[^1].ARCCS[^1].EL2DS = new List<EL2D>();
+                                        vrids[^1].ARCCS[^1].EL2DS.Add(EL2D);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                case "CT2D":
+                                    do
+                                    {
+                                        CT2D CT2D = new CT2D(i);
+                                        if (vrids[^1].ARCCS[^1].CT2DS == null) vrids[^1].ARCCS[^1].CT2DS = new List<CT2D>();
+                                        vrids[^1].ARCCS[^1].CT2DS.Add(CT2D);
+                                    }
+                                    while (!i.IsEnd);
+                                    break;
+
+                                    #endregion
                             }
                         }
                     }
