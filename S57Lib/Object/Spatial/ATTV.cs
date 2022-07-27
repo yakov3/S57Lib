@@ -14,5 +14,9 @@ namespace S57Lib.Object.Spatial
         }
         public ushort ATTL { get; set; }
         public string ATVL { get; set; }
+        public override string ToString()
+        {
+            return $"ATTL {ATTL} ATVL {ATVL}";
+        }
     }
 }

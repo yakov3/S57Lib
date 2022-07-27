@@ -12,6 +12,8 @@ namespace S57Lib
 {
     public class S57Tree
     {
+        protected int AALL = 1;
+        protected int NALL = 1;
         public bool ReadFile(string fileName)
         {
             if (!File.Exists(fileName)) return false;
@@ -38,6 +40,8 @@ namespace S57Lib
                                     break;
                                 case "DSSI":
                                     DSSI = new DSSI(i);
+                                    AALL = DSSI.AALL;
+                                    NALL = DSSI.NALL;
                                     break;
                                 case "DSPM":
                                     DSPM = new DSPM(i);
@@ -57,23 +61,52 @@ namespace S57Lib
                                     frids[^1].FOID = FOID;
                                     break;
                                 case "ATTF":
-                                    do
+                                    switch (AALL) 
                                     {
-                                        ATTF ATTF = new ATTF(i);
-                                        if (frids[^1].ATTFS == null) frids[^1].ATTFS = new List<ATTF>();
-                                        frids[^1].ATTFS.Add(ATTF);
+                                        case 2:
+                                            do
+                                            {
+                                                ATTFL2 ATTFL2 = new ATTFL2(i);
+                                                if (frids[^1].ATTFL2S == null) frids[^1].ATTFL2S = new List<ATTFL2>();
+                                                frids[^1].ATTFL2S.Add(ATTFL2);
+                                            }
+                                            while (!i.IsEnd);
+                                            break;
+                                        default:
+                                            do
+                                            {
+                                                ATTF ATTF = new ATTF(i);
+                                                if (frids[^1].ATTFS == null) frids[^1].ATTFS = new List<ATTF>();
+                                                frids[^1].ATTFS.Add(ATTF);
+                                            }
+                                            while (!i.IsEnd);
+                                            break;
                                     }
-                                    while (!i.IsEnd);
                                     break;
+
                                 case "NATF":
-                                    //do
-                                    //{
-                                    //    NATF NAFT = new NATF(i);
-                                    //    if (frids[^1].NATFS == null) frids[^1].NATFS = new List<NATF>();
-                                    //    frids[^1].NATFS.Add(NAFT);
-                                    //}
-                                    //while (!i.IsEnd);
+                                    switch (NALL)
+                                    {
+                                        case 2:
+                                            do
+                                            {
+                                                NATFL2 NAFT = new NATFL2(i);
+                                                if (frids[^1].NATFL2S == null) frids[^1].NATFL2S = new List<NATFL2>();
+                                                frids[^1].NATFL2S.Add(NAFT);
+                                            } while (!i.IsEnd);
+                                            break;
+
+                                        default:
+                                            do
+                                            {
+                                                NATF NAFT = new NATF(i);
+                                                if (frids[^1].NATFS == null) frids[^1].NATFS = new List<NATF>();
+                                                frids[^1].NATFS.Add(NAFT);
+                                            } while (!i.IsEnd);
+                                            break;
+                                    }
                                     break;
+
                                 case "FFPC":
                                     FFPC FFPC = new FFPC(i);
                                     frids[^1].FFPC = FFPC;

@@ -58,7 +58,7 @@ namespace S57Lib.Object
                 arr[0] = (byte)enumerator.Current;
                 enumerator.MoveNext();
                 arr[1] = (byte)enumerator.Current;
-                ushort i = Convert.ToUInt16(arr);
+                ushort i = BitConverter.ToUInt16(arr);
                 if (i == 0x1F) break;
                 list.Add(i);
             }

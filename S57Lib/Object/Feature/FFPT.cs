@@ -22,5 +22,9 @@ namespace S57Lib.Object.Feature
         public LNAM LNAM { get; set; }
         public RIND RIND { get; set; }
         public string COMT { get; set; }
+        public override string ToString()
+        {
+            return $"LNAME | {LNAM} | RIND {RIND} COMT {COMT}"; 
+        }
     }
 }

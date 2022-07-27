@@ -22,5 +22,9 @@ namespace S57Lib.Object.Spatial
         public CCUI CCUI { get; set; }
         public ushort CCIX { get; set; }
         public ushort CCNC { get; set; }
+        public override string ToString()
+        {
+            return $"CCUI {CCUI} CCIX {CCIX} CCNC {CCNC}";
+        }
     }
 }

@@ -16,5 +16,9 @@ namespace S57Lib.Object.Feature
         public FFUI FFUI { get; set; }
         public ushort FFIX { get; set; }
         public ushort NFPT { get; set; }
+        public override string ToString()
+        {
+            return $"FFUI {FFUI} FFIX {FFIX} NFPT {NFPT}";
+        }
     }
 }

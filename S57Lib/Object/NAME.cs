@@ -13,6 +13,10 @@ namespace S57Lib.Object
             RCID = ArrayReader.ReadUInt(i);
         }
         public RCNM RCNM { get; set; } 
-        public uint RCID { get; set; } 
+        public uint RCID { get; set; }
+        public override string ToString()
+        {
+            return $"RCNM {RCNM} RCID {RCID}";
+        }
     }
 }

@@ -26,5 +26,9 @@ namespace S57Lib.Object.Feature
         public ORNT ORNT { get; set; }
         public USAG USAG { get; set; }
         public MASK MASK { get; set; }
+        public override string ToString()
+        {
+            return $"NAME | {NAME} | ORNT {ORNT} USAG {USAG} MASK {MASK}";
+        }
     }
 }

@@ -22,5 +22,9 @@ namespace S57Lib.Object.Feature
         public FSUI FSUI { get; set; }
         public uint FSIX { get; set; }
         public uint NSPT { get; set; }
+        public override string ToString()
+        {
+            return $"FSUI {FSUI} FSIX {FSIX} NSPT {NSPT}";
+        }
     }
 }

@@ -14,5 +14,9 @@ namespace S57Lib.Object.Spatial
         }
         public double YCOO { get; set; }
         public double XCOO { get; set; }
+        public override string ToString()
+        {
+            return $"{YCOO} {XCOO}";
+        }
     }
 }

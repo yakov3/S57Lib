@@ -16,5 +16,9 @@ namespace S57Lib.Object
         public ushort AGEN { get; set; }
         public uint FIDN { get; set; }
         public ushort FIDS { get; set; }
+        public override string ToString()
+        {
+            return $"AGEN {AGEN} FIDN {FIDN} FIDS {FIDS}";
+        }
     }
 }

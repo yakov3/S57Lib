@@ -36,5 +36,9 @@ namespace S57Lib.Object.Spatial
         public USAG USAG { get; set; }
         public TOPI TOPI { get; set; }
         public MASK MASK { get; set; }
+        public override string ToString()
+        {
+            return $"NAME | {NAME} | ORNT {ORNT} USAG {USAG} TOPI {TOPI} MASK {MASK}";
+        }
     }
 }

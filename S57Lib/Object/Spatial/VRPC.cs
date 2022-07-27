@@ -22,5 +22,9 @@ namespace S57Lib.Object.Spatial
         public VPUI VPUI { get; set; }
         public ushort VPIX { get; set; }    
         public ushort NVPT { get; set; }
+        public override string ToString()
+        {
+            return $"VPUI {VPUI} VPIX {VPIX} NVPT {NVPT}";
+        }
     }
 }
