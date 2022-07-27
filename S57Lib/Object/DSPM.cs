@@ -44,5 +44,21 @@ namespace S57Lib.Object
         public uint COMF { get; set; }
         public uint SOMF { get; set; }
         public string COMT { get; set; }
+        public override string ToString()
+        {
+            return $"RCNM {RCNM}\n" +
+                $"RCID {RCID}\n" +
+                $"HDAT {HDAT}\n" +
+                $"VDAT {VDAT}\n" +
+                $"SDAT {SDAT}\n" +
+                $"CSCL {CSCL}\n" +
+                $"DUNI {DUNI}\n" +
+                $"HUNI {HUNI}\n" +
+                $"PUNI {PUNI}\n" +
+                $"COUN {COUN}\n" +
+                $"COMF {COMF}\n" +
+                $"SOMF {SOMF}\n" +
+                $"COMT {COMT}";
+        }
     }
 }

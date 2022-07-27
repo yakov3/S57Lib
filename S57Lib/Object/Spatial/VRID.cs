@@ -27,8 +27,7 @@ namespace S57Lib.Object.Spatial
         public List<ARCC> ARCCS { get; set; }
         public override string ToString()
         {
-            string str = "VRID\n" +
-                $"RCNM {RCNM}\n" +
+            string str = $"RCNM {RCNM}\n" +
                 $"RCID {RCID}\n" +
                 $"RVER {RVER}\n" +
                 $"RUIN {RUIN}\n";

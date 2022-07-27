@@ -58,5 +58,24 @@ namespace S57Lib.Object
         public PROF PROF { get; set; }
         public ushort AGEN { get; set; }
         public string COMT { get; set; }
+        public override string ToString()
+        {
+            return $"RCNM {RCNM}\n" +
+                $"RCID {RCID}\n" +
+                $"EXPP {EXPP}\n" +
+                $"INTU {INTU}\n" +
+                $"DSNM {DSNM}\n" +
+                $"EDTN {EDTN}\n" +
+                $"UPDN {UPDN}\n" +
+                $"UADT {UADT}\n" +
+                $"ISDT {ISDT}\n" +
+                $"STED {STED}\n" +
+                $"PRSP {PRSP}\n" +
+                $"PSDN {PSDN}\n" +
+                $"PRED {PRED}\n" +
+                $"PROF {PROF}\n" +
+                $"AGEN {AGEN}\n" +
+                $"COMT {COMT}";
+        }
     }
 }

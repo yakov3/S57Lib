@@ -44,7 +44,7 @@ namespace S57Lib.Object.Feature
 
         public override string ToString()
         {
-            string str = $"FRID\nRCMN {RCNM}\n" +
+            string str = $"RCMN {RCNM}\n" +
                 $"RCID {RCID}\n" +
                 $"PRIM {PRIM}\n" +
                 $"GRUP {GRUP}\n" +

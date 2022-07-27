@@ -19,6 +19,20 @@ namespace Test
 
             if (s57Tree.FRIDS.Count < 578) return;
             FRID fRID = s57Tree.FRIDS[577];
+
+            Console.WriteLine("DSID");
+            Console.WriteLine(s57Tree.DSID);
+
+            Console.WriteLine("-----\nDSSI");
+            Console.WriteLine(s57Tree.DSSI);
+
+            Console.WriteLine("-----\nDSPM");
+            Console.WriteLine(s57Tree.DSPM);
+
+            Console.WriteLine("-----\nDSRC");
+            Console.WriteLine(s57Tree.DSRC);
+
+            Console.WriteLine("-----\nFRID");
             Console.WriteLine(fRID);
             Console.WriteLine();
 
@@ -26,6 +40,7 @@ namespace Test
             {
                 if (vRID.RCNM == RCNM.VI || vRID.RCID == 161) 
                 {
+                    Console.WriteLine("-----\nVRID");
                     Console.WriteLine(vRID);
                     break;
                 }

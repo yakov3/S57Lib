@@ -43,5 +43,9 @@ namespace S57Lib.Object
         public uint NOCN { get; set; }
         public uint NOED { get; set; }
         public uint NOFA { get; set; }
+        public override string ToString()
+        {
+            return $"DSTR {DSTR} AALL {AALL} NALL {NALL} NOMR {NOMR} NOCR {NOCR} NOGR {NOGR} NOLR {NOLR} NOIN {NOIN} NOCN {NOCN} NOED {NOED} NOFA {NOFA}";
+        }
     }
 }
